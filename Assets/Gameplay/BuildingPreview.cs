@@ -19,6 +19,7 @@ public class BuildingPreview : MonoBehaviour
         rb = gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        GetComponent<FloorToGround>().onUpdate = true;
     }
 
     private void OnCollisionEnter(Collision collision)

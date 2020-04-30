@@ -60,6 +60,7 @@ public class CameraScript : MonoBehaviour
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
         heightLerp -= scroll;
+        heightLerp = Mathf.Clamp01(heightLerp);
         float targetHeight = Mathf.Lerp(minHeight, maxHeight, heightLerp);
         smoothedHeight = Mathf.Lerp(smoothedHeight, targetHeight, Time.deltaTime * scrollSmoothSpeed);
         cam.transform.localPosition = new Vector3(0, smoothedHeight, -smoothedHeight);

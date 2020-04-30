@@ -30,7 +30,7 @@ public class BuildSystem : MonoBehaviour
         bool hit = groundPlane.Raycast(buildRay, out float enterDistance);
         if (!hit)
         {
-            Debug.LogError("not pointing at ground!");
+            Debug.LogWarning("not pointing at ground!");
             return;
         }
         Vector3 point = buildRay.GetPoint(enterDistance);
@@ -76,13 +76,13 @@ public class BuildSystem : MonoBehaviour
         instance.transform.SetParent(buildingsHolder);
         instance.transform.position = position;
         instance.name = prefab.name;
-        Destroy(previewInstance);
+        Destroy(previewInstance.gameObject);
         previewInstance = null;
     }
 
     void CancelBuilding()
     {
-        Destroy(previewInstance);
+        Destroy(previewInstance.gameObject);
         previewInstance = null;
     }
 }

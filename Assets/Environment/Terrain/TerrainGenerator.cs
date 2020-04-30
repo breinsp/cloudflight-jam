@@ -9,21 +9,16 @@ public class TerrainGenerator : MonoBehaviour
     public int vertexCount;
     public float amplitude;
     public float frequency;
+    public GameObject terrain;
 
-    public Material material;
-
-    private GameObject terrain;
     private Vector3 offset;
 
-    void Start()
+    void Awake()
     {
         offset = new Vector3(size, 0, size) * -0.5f;
-        terrain = new GameObject("Terrain");
-        terrain.transform.SetParent(transform);
-        terrain.AddComponent<MeshRenderer>().material = material;
         Mesh mesh = GenerateMesh();
-        terrain.AddComponent<MeshFilter>().mesh = mesh;
-        terrain.AddComponent<MeshCollider>().sharedMesh = mesh;
+        terrain.GetComponent<MeshFilter>().mesh = mesh;
+        terrain.GetComponent<MeshCollider>().sharedMesh = mesh;
         terrain.tag = "Terrain";
     }
 
