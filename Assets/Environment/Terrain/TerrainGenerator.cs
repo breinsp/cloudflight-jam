@@ -97,8 +97,13 @@ public class TerrainGenerator : MonoBehaviour
         float mag = P.magnitude / size;
         float y1 = Mathf.PerlinNoise(P.x * frequency, P.z * frequency);
         float y2 = Mathf.PerlinNoise(P.x * frequency * 2, P.z * frequency * 2) * 0.5f;
+        float y3 = Mathf.PerlinNoise(P.x * frequency * 4, P.z * frequency * 4) * 0.25f;
+        float y4 = Mathf.PerlinNoise(P.x * frequency * 8, P.z * frequency * 8) * 0.125f;
 
-        P.y = (y1 + y2) * mag * amplitude;
+        float y = (y1 + y2 + y3 + y4) / 2f;
+        y = Mathf.Pow(y, 2);
+
+        P.y = y * mag * amplitude;
 
         return P;
     }

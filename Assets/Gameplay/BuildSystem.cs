@@ -7,18 +7,18 @@ public class BuildSystem : MonoBehaviour
 {
     public GameObject prefab;
 
-    private Plane groundPlane;
     private Camera cam;
     private BuildingPreview previewInstance;
     private Transform buildingsHolder;
+    private LayerMask layerMask;
 
     // Start is called before the first frame update
     void Start()
     {
-        groundPlane = new Plane(Vector3.up, Vector3.zero);
         buildingsHolder = new GameObject("buildings").transform;
         buildingsHolder.SetParent(transform);
         cam = Camera.main;
+        layerMask = LayerMask.GetMask("Terrain");
     }
 
     // Update is called once per frame
@@ -27,13 +27,13 @@ public class BuildSystem : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         Ray buildRay = cam.ScreenPointToRay(mousePos);
 
-        bool hit = groundPlane.Raycast(buildRay, out float enterDistance);
+        bool hit = Physics.Raycast(buildRay, out RaycastHit hitInfo, layerMask);
         if (!hit)
         {
             Debug.LogWarning("not pointing at ground!");
             return;
         }
-        Vector3 point = buildRay.GetPoint(enterDistance);
+        Vector3 point = hitInfo.point;
 
         if (previewInstance != null)
         {

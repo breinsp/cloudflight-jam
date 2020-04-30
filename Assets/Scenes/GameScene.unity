@@ -241,7 +241,7 @@ MonoBehaviour:
 
     Scroll Wheel - camera elevation
 
-    MMB - Rotate
+    MMB - rotate
     camera'
 --- !u!222 &177794942
 CanvasRenderer:
@@ -437,8 +437,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 200
   vertexCount: 100
-  amplitude: 15
-  frequency: 0.08
+  amplitude: 50
+  frequency: 0.03
   terrain: {fileID: 1226089876}
 --- !u!1 &658120042
 GameObject:
@@ -546,7 +546,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.7
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
