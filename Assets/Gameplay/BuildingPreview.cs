@@ -23,12 +23,14 @@ public class BuildingPreview : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Terrain") return;
         collidingWith.Add(collision.collider);
         colliding = collidingWith.Count > 0;
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        if (!collidingWith.Contains(collision.collider)) return;
         collidingWith.Remove(collision.collider);
         colliding = collidingWith.Count > 0;
     }
