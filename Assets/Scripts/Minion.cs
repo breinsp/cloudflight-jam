@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[RequireComponent(typeof(MinionAnimation))]
 public class Minion : MonoBehaviour
 {
     public float moveSpeed;
@@ -10,11 +11,14 @@ public class Minion : MonoBehaviour
     private Vector3 goal;
 
     private bool isSacrificed;
+    private MinionAnimation minionAnimation;
 
     // Start is called before the first frame update
     void Start()
     {
         goal = RandomGoal();
+        minionAnimation = GetComponent<MinionAnimation>();
+        minionAnimation.SetState(MinionState.normal);
     }
 
     // Update is called once per frame
@@ -89,6 +93,7 @@ public class Minion : MonoBehaviour
     public void Sacrifice()
     {
         if (isSacrificed) return;
+        minionAnimation.SetState(MinionState.sacrificing);
         goal = Vector3.zero;
         isSacrificed = true;
         moveSpeed *= 3;

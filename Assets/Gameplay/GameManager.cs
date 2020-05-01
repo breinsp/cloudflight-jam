@@ -8,10 +8,11 @@ public class GameManager : MonoBehaviour
 
     public Button sacrificeButton;
     public Transform minionHolder;
-    public float minionCount;
 
     [HideInInspector]
     public List<Minion> minions;
+
+    public int MinionCount { get { return minions.Count; } }
 
     void Awake()
     {
@@ -19,11 +20,6 @@ public class GameManager : MonoBehaviour
         minionHolder = new GameObject("Minions").transform;
         minionHolder.transform.parent = transform;
         sacrificeButton.onClick.AddListener(SacrificeMinion);
-    }
-
-    void Update()
-    {
-        minionCount = minions.Count;
     }
 
     private void SacrificeMinion()
