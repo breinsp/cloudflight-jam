@@ -37,7 +37,7 @@ public class BuildUI : MonoBehaviour
             GameObject instance = Instantiate(buildButtonPrefab);
             instance.transform.SetParent(buildPanel.transform);
             BuildButton buildButton = instance.GetComponent<BuildButton>();
-            buildButton.cost = building.cost;
+            buildButton.entity = building;
             buildButton.OnClick += () => buildSystem.Build(building);
             RectTransform rectTransform = instance.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = new Vector3(i * buttonOuterSize + padding, -padding, 0);

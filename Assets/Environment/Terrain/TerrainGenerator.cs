@@ -97,7 +97,18 @@ public class TerrainGenerator : MonoBehaviour
 
     private Vector3 ApplyNoise(Vector3 P)
     {
+        int seed = Mathf.RoundToInt(P.x * 1000) + Mathf.RoundToInt(P.z * 10);
+        System.Random rand = new System.Random(seed);
+
+        float maxDeviation = size / (vertexCount - 1) * 0.3f;
+
+        Vector3 meshOffset = new Vector3(Mathf.Lerp(-maxDeviation, maxDeviation, (float)rand.NextDouble()), 0, Mathf.Lerp(-maxDeviation, maxDeviation, (float)rand.NextDouble()));
+
+        P += meshOffset;
+
         float mag = P.magnitude / size;
+        mag = mag * 0.98f + 0.02f;
+
         Vector3 POffset = P + noiseOffset; //offset perlin
 
         float y1 = Mathf.PerlinNoise(POffset.x * frequency, POffset.z * frequency);

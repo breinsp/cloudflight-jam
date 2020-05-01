@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
 {
-    public static float currentIntensity;
+    public static ScreenShake instance;
 
     public float shakeIntensityLerpSpeed = 1;
     public float positionalShakeAmount = 1;
@@ -14,6 +14,12 @@ public class ScreenShake : MonoBehaviour
     public float virtualShakeIntensity;
 
     private float targetIntensity;
+    private float currentIntensity;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
@@ -45,7 +51,7 @@ public class ScreenShake : MonoBehaviour
     public void SetShakeImpulse(float intensity, float speed)
     {
         shakeIntensityLerpSpeed = speed;
-        currentIntensity = intensity;
+        currentIntensity += intensity;
         targetIntensity = 0;
     }
 }
