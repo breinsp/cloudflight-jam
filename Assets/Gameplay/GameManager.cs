@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private const int BASE_MAX_POP = 20;
+    private const int MAX_HEALTH = 1000;
 
     public static GameManager instance;
 
+    public Slider healthBarSlider;
     public Text popCountText;
+    public int health;
 
     [HideInInspector]
     public List<Minion> minions;
@@ -24,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        health = MAX_HEALTH;
         audioSource = GetComponent<AudioSource>();
         minionHolder = new GameObject("Minions").transform;
         minionHolder.transform.parent = transform;
@@ -38,12 +43,17 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         popCountText.text = MinionCount + "/" + maxPopulation;
+        healthBarSlider.value = health / (float)MAX_HEALTH;
+        if(health < 0)
+        {
+            GameOver();
+        }
     }
 
     private void SacrificeMinion()
     {
         if (minions.Count == 0) return;
-        int randomIndex = Random.Range(0, minions.Count);
+        int randomIndex = UnityEngine.Random.Range(0, minions.Count);
         Minion minion = minions[randomIndex];
         minions.RemoveAt(randomIndex);
         minion.Sacrifice();
@@ -51,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnInitialBuildings()
     {
-        Vector2 rand = Random.insideUnitCircle;
+        Vector2 rand = UnityEngine.Random.insideUnitCircle;
         Vector3 dir = new Vector3(rand.x, 0, rand.y).normalized * 20;
         BuildSystem.instance.SpawnBuilding(dir, 0);
     }
@@ -71,12 +81,17 @@ public class GameManager : MonoBehaviour
 
     public void PlayAudio(AudioClip clip, float volume, float pitchMin, float pitchMax)
     {
-        audioSource.pitch = Random.Range(pitchMin, pitchMax);
+        audioSource.pitch = UnityEngine.Random.Range(pitchMin, pitchMax);
         audioSource.PlayOneShot(clip, volume);
     }
 
     public void IncreasePop(int increaseBy)
     {
         maxPopulation += increaseBy;
+    }
+
+    private void GameOver()
+    {
+        throw new NotImplementedException();
     }
 }
