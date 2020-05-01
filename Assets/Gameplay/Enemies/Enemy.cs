@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy : MonoBehaviour
+{
+    public Transform goal;
+    public float moveSpeed;
+    public float rotationSpeed;
+    public Attacker attacker;
+    // Start is called before the first frame update
+    void Awake()
+    {
+        goal = GameManager.instance.sacraficeTable;
+        attacker = GetComponent<Attacker>();
+        attacker.Init(Attacker_Die, GameManager.instance.minionHolder, "Minion", moveSpeed, rotationSpeed);
+    }
+
+    private void Attacker_Die()
+    {
+        Destroy(gameObject);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!attacker.attackMode)
+        {
+            Vector3 direction = goal.position - transform.position;
+            direction.y = 0;
+            MoveInDirection(direction);
+        }
+    }
+
+    void MoveInDirection(Vector3 direction)
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+    }
+}

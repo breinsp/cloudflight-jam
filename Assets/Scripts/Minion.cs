@@ -6,8 +6,8 @@ public class Minion : MonoBehaviour
 {
     public float moveSpeed;
     public float rotationSpeed;
+    public Attacker attacker;
 
-    private Vector3 direction;
     private Vector3 goal;
 
     private bool isSacrificed;
@@ -19,29 +19,47 @@ public class Minion : MonoBehaviour
         goal = RandomGoal();
         minionAnimation = GetComponent<MinionAnimation>();
         minionAnimation.SetState(MinionState.normal);
+        attacker = GetComponent<Attacker>();
+        attacker.Init(Attacker_Die, GameManager.instance.enemyHolder, "Enemy", moveSpeed, rotationSpeed);
+
+    }
+
+    private void Attacker_Die()
+    {
+        StartExplosion();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(transform.position + Vector3.up * 0.2f, (goal - transform.position).normalized, 1f))
+        if (!attacker.attackMode)
         {
-            Collide();
-        }
+            if (Physics.Raycast(transform.position + Vector3.up * 0.2f, (goal - transform.position).normalized, 1f))
+            {
+                Collide();
+            }
 
-        if (isSacrificed)
-        {
-            HandleSacrifice();
+            if (isSacrificed)
+            {
+                HandleSacrifice();
+            }
+            else
+            {
+                HandleIdle();
+            }
         }
-        else
-        {
-            HandleIdle();
-        }
+    }
+
+    void MoveInDirection(Vector3 direction)
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 
     void HandleIdle()
     {
-        direction = goal - transform.position;
+        Vector3 direction = goal - transform.position;
         direction.y = 0f;
         if (direction.magnitude < 0.1f)
         {
@@ -49,24 +67,20 @@ public class Minion : MonoBehaviour
         }
         else
         {
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.position += direction.normalized * moveSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+            MoveInDirection(direction);
         }
     }
 
     void HandleSacrifice()
     {
-        direction = goal - transform.position;
+        Vector3 direction = goal - transform.position;
         if (direction.magnitude < 3f)
         {
             StartExplosion();
         }
         else
         {
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.position += direction.normalized * moveSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+            MoveInDirection(direction);
         }
     }
 
