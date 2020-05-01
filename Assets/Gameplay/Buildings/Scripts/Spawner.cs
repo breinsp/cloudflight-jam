@@ -3,23 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner : Building
 {
     public GameObject minionPrefab;
     public float spawnRadius;
     public float spawnTimeDelta;
+
     private float lastSpawnTimeDelta;
 
-    // Update is called once per frame
     void Update()
     {
         lastSpawnTimeDelta += Time.deltaTime;
-        if (lastSpawnTimeDelta >= spawnTimeDelta)
+        if (lastSpawnTimeDelta >= spawnTimeDelta && GameManager.instance.RemainingPop > 0)
         {
             SpawnMinion();
             lastSpawnTimeDelta = 0;
         }
-        //Debug.DrawRay(transform.position, Vector3.forward * spawnRadius, Color.red);
     }
 
     private void SpawnMinion()
@@ -31,5 +30,9 @@ public class Spawner : MonoBehaviour
         GameObject minion = Instantiate(minionPrefab, newPos, Quaternion.identity);
         minion.transform.parent = GameManager.instance.minionHolder;
         GameManager.instance.AddMinion(minion.GetComponent<Minion>());
+    }
+
+    public override void BuildingPlaced()
+    {
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BuildSystem : MonoBehaviour
 {
+    public static BuildSystem instance;
+
     public List<BuildingEntity> buildings;
 
     private BuildingEntity selectedEntity;
@@ -15,6 +17,7 @@ public class BuildSystem : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         buildingsHolder = new GameObject("buildings").transform;
         buildingsHolder.SetParent(transform);
         cam = Camera.main;
@@ -53,12 +56,25 @@ public class BuildSystem : MonoBehaviour
     void CompleteBuilding(Vector3 position)
     {
         GameManager.instance.SacrificeMinions(selectedEntity.cost);
-        GameObject instance = Instantiate(selectedEntity.prefab);
-        instance.transform.SetParent(buildingsHolder);
-        instance.transform.position = position;
-        instance.name = selectedEntity.name;
+        SpawnBuilding(position, selectedEntity);
         Destroy(previewInstance.gameObject);
         previewInstance = null;
+    }
+
+    public void SpawnBuilding(Vector3 position, int entityIndex)
+    {
+        BuildingEntity entity = buildings[entityIndex];
+        SpawnBuilding(position, entity);
+    }
+
+    public void SpawnBuilding(Vector3 position, BuildingEntity entity)
+    {
+        GameObject instance = Instantiate(entity.prefab);
+        instance.transform.SetParent(buildingsHolder);
+        instance.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
+        instance.transform.position = position;
+        instance.name = entity.name;
+        instance.GetComponent<Building>().BuildingPlaced();
     }
 
     void CancelBuilding()

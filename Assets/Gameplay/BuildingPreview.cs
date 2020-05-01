@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Building))]
 public class BuildingPreview : MonoBehaviour
 {
     public bool colliding;
@@ -11,9 +12,11 @@ public class BuildingPreview : MonoBehaviour
     private Rigidbody rb;
 
     private List<Collider> collidingWith;
+    private Building building;
 
     private void Awake()
     {
+        building = GetComponent<Building>();
         collidingWith = new List<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
         rb = gameObject.AddComponent<Rigidbody>();
@@ -38,6 +41,6 @@ public class BuildingPreview : MonoBehaviour
 
     public void UpdateVisibility()
     {
-        meshRenderer.enabled = !colliding;
+        building.SetVisible(!colliding);
     }
 }

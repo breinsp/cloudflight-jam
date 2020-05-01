@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class BuildButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Text costText;
-    public int cost;
+    public Image icon;
+    public BuildingEntity entity;
 
     private bool hovered;
     private RectTransform rect;
@@ -20,15 +21,15 @@ public class BuildButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     void Start()
     {
-        costText.text = cost.ToString();
+        costText.text = entity.cost.ToString();
+        icon.sprite = entity.icon;
         rect = GetComponent<RectTransform>();
         pos = rect.anchoredPosition;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        purchasable = GameManager.instance.MinionCount >= cost;
+        purchasable = GameManager.instance.MinionCount >= entity.cost;
 
         if (hovered && purchasable)
         {

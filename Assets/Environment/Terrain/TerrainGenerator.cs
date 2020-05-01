@@ -107,6 +107,7 @@ public class TerrainGenerator : MonoBehaviour
         P += meshOffset;
 
         float mag = P.magnitude / size;
+        mag = mag * 0.98f + 0.02f;
 
         Vector3 POffset = P + noiseOffset; //offset perlin
 
