@@ -6,14 +6,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject minionPrefab;
-    public List<GameObject> minions;
     public float spawnRadius;
     public float spawnTimeDelta;
     private float lastSpawnTimeDelta;
-    void Awake()
-    {
-        minions = new List<GameObject>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,7 +29,7 @@ public class Spawner : MonoBehaviour
         float z = Mathf.Sin(angle);
         Vector3 newPos = new Vector3(x * spawnRadius + transform.position.x, transform.position.y, z * spawnRadius + transform.position.z);
         GameObject minion = Instantiate(minionPrefab, newPos, Quaternion.identity);
-        minion.transform.parent = transform;
-        minions.Add(minion);
+        minion.transform.parent = GameManager.instance.minionHolder;
+        GameManager.instance.AddMinion(minion.GetComponent<Minion>());
     }
 }
