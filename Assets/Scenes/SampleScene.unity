@@ -306,16 +306,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2894394854013533678, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2894394854013533678, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3832713242721749552, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -371,30 +361,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3832713242721749552, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832713242721749552, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832713242721749552, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7250186615877511433, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
         type: 3}
       propertyPath: m_Name
       value: Minion
-      objectReference: {fileID: 0}
-    - target: {fileID: 7630581963348836111, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0943e1d3e928a7c4ea69cf5cf3a6b502, type: 3}

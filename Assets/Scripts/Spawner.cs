@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
             SpawnMinion();
             lastSpawnTimeDelta = 0;
         }
-        Debug.DrawRay(transform.position, Vector3.forward * spawnRadius, Color.red);
+        //Debug.DrawRay(transform.position, Vector3.forward * spawnRadius, Color.red);
     }
 
     private void SpawnMinion()
@@ -37,5 +37,4 @@ public class Spawner : MonoBehaviour
         minion.transform.parent = transform;
         minions.Add(minion);
     }
-
 }
