@@ -15,7 +15,7 @@ public class BuildSystem : MonoBehaviour
     private Transform buildingsHolder;
     private LayerMask layerMask;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         buildingsHolder = new GameObject("buildings").transform;

@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform goal;
     public float moveSpeed;
     public float rotationSpeed;
     public Attacker attacker;
     // Start is called before the first frame update
     void Awake()
     {
-        goal = GameManager.instance.sacraficeTable;
         attacker = GetComponent<Attacker>();
         attacker.Init(Attacker_Die, GameManager.instance.minionHolder, "Minion", moveSpeed, rotationSpeed);
     }
@@ -27,7 +25,7 @@ public class Enemy : MonoBehaviour
     {
         if (!attacker.attackMode)
         {
-            Vector3 direction = goal.position - transform.position;
+            Vector3 direction = -transform.position;
             direction.y = 0;
             MoveInDirection(direction);
         }

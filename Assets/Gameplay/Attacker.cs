@@ -16,11 +16,14 @@ public class Attacker : MonoBehaviour
     private string targetTag;
 
     public bool attackMode = false;
+    public bool fighting = false;
 
-    public delegate void DieEventHandler();
-    public event DieEventHandler OnDeath;
+    public delegate void VoidHandler();
+    public event VoidHandler OnDeath;
+    public event VoidHandler OnBeginAttack;
+    public event VoidHandler OnStopAttack;
 
-    public void Init(DieEventHandler die, Transform targetHolder, string targetTag, float movingSpeed, float rotationSpeed)
+    public void Init(VoidHandler die, Transform targetHolder, string targetTag, float movingSpeed, float rotationSpeed)
     {
         this.OnDeath += die;
         this.targetHolder = targetHolder;
@@ -41,6 +44,12 @@ public class Attacker : MonoBehaviour
         if (attackMode)
         {
             MoveToTarget();
+        }
+        else if (fighting)
+        {
+            fighting = false;
+            if (OnStopAttack != null)
+                OnStopAttack.Invoke();
         }
         lastAttackDeltaTime += Time.deltaTime;
     }
@@ -67,6 +76,12 @@ public class Attacker : MonoBehaviour
 
     private void Attack()
     {
+        if (!fighting)
+        {
+            fighting = true;
+            if (OnBeginAttack != null)
+                OnBeginAttack.Invoke();
+        }
         Attacker attacker = target.GetComponent<Attacker>();
         attacker.health -= damagePerHit;
         lastAttackDeltaTime = 0;

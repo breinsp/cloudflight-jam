@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : Building
 {
     public GameObject enemyPrefab;
     public float spawnRadius;
@@ -31,5 +31,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, newPos, Quaternion.identity);
         enemy.transform.parent = GameManager.instance.enemyHolder;
         GameManager.instance.AddEnemy(enemy.GetComponent<Enemy>());
+    }
+
+    public override void BuildingPlaced()
+    {
     }
 }

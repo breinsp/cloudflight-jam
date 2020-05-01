@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         popCountText.text = MinionCount + "/" + maxPopulation;
         healthBarSlider.value = health / (float)MAX_HEALTH;
-        if(health < 0)
+        if (health < 0)
         {
             GameOver();
         }
@@ -75,6 +75,12 @@ public class GameManager : MonoBehaviour
     public void AddMinion(Minion minion)
     {
         minions.Add(minion);
+    }
+
+    internal void RemoveMinion(Minion minion)
+    {
+        if (minions.Contains(minion))
+            minions.Remove(minion);
     }
 
     public void AddEnemy(Enemy enemy)

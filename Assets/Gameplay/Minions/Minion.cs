@@ -25,12 +25,15 @@ public class Minion : MonoBehaviour
         minionAnimation.SetState(MinionState.normal);
         attacker = GetComponent<Attacker>();
         attacker.Init(Attacker_Die, GameManager.instance.enemyHolder, "Enemy", moveSpeed, rotationSpeed);
+        attacker.OnBeginAttack += BeginAttack;
+        attacker.OnStopAttack += StopAttack;
         goal = RandomGoal();
     }
 
     private void Attacker_Die()
     {
-        StartExplosion();
+        GameManager.instance.RemoveMinion(this);
+        StartExplosion(0.5f);
     }
 
     // Update is called once per frame
@@ -90,7 +93,7 @@ public class Minion : MonoBehaviour
         Vector3 direction = goal - transform.position;
         if (direction.magnitude < 3f)
         {
-            StartExplosion();
+            StartExplosion(2);
         }
         else
         {
@@ -113,7 +116,7 @@ public class Minion : MonoBehaviour
 
     private Vector3 RandomGoal()
     {
-        if(UnityEngine.Random.Range(0f, 1f) < 0.2f)
+        if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
         {
             //wait
             waitSeconds = UnityEngine.Random.Range(1f, 4f);
@@ -137,17 +140,17 @@ public class Minion : MonoBehaviour
         moveSpeed *= 2;
     }
 
-    public void StartExplosion()
+    public void StartExplosion(float duration)
     {
         if (isPraising) return;
         isPraising = true;
         minionAnimation.SetState(MinionState.praising);
-        StartCoroutine(HandleExplosion());
+        StartCoroutine(HandleExplosion(duration));
     }
 
-    public IEnumerator HandleExplosion()
+    public IEnumerator HandleExplosion(float duration)
     {
-        float time = 2;
+        float time = duration;
         float start = Time.time;
         float delta = 0;
 
@@ -177,5 +180,15 @@ public class Minion : MonoBehaviour
         instance.transform.position = transform.position;
         Destroy(gameObject);
         ScreenShake.instance.SetShakeImpulse(10f, 1f);
+    }
+
+    public void BeginAttack()
+    {
+        minionAnimation.SetState(MinionState.fighting);
+    }
+
+    public void StopAttack()
+    {
+        minionAnimation.SetState(MinionState.normal);
     }
 }
