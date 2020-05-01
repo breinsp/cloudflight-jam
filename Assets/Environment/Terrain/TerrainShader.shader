@@ -1,5 +1,6 @@
 ﻿Shader "Custom/TerrainShader" {
 	Properties{
+		_MainTex("Albedo", 2D) = "white" {}
 		_Color1("Color 1", Color) = (1,1,1,1)
 		_Color2("Color 2", Color) = (1,1,1,1)
 		_Angle("Slope Angle", float) = 0
@@ -13,7 +14,7 @@
 			#pragma surface surf Standard fullforwardshadows vertex:vert
 			#pragma target 3.0
 			struct Input {
-				float3 vertexColor;
+				float2 uv_MainTex;
 				float3 normal;
 			};
 
@@ -29,7 +30,6 @@
 			void vert(inout appdata_full v, out Input o)
 			{
 				UNITY_INITIALIZE_OUTPUT(Input,o);
-				o.vertexColor = v.color;
 				o.normal = v.normal;
 			}
 
@@ -37,6 +37,7 @@
 			fixed4 _Color2;
 			float _Angle;
 			float _SlopeMinValue;
+			uniform sampler2D _MainTex;
 
 			float invLerp(float from, float to, float value){
 			  return (value - from) / (to - from);
@@ -44,7 +45,8 @@
 
 			void surf(Input IN, inout SurfaceOutputStandard o)
 			{
-				fixed3 c = IN.vertexColor;
+				fixed4 tex = tex2D (_MainTex, IN.uv_MainTex);
+
 				fixed3 n = IN.normal;
 				float angle = angleBetween(n, fixed3(0, 1, 0));
 				float slope = clamp(angle / _Angle, 0, 1);
@@ -54,7 +56,7 @@
 					slope = invLerp(_SlopeMinValue, 1, slope);
 				}
 
-				float4 color = lerp(_Color1, _Color2, slope);
+				float4 color = lerp(tex * _Color1, _Color2, slope);
 				o.Albedo = color.rgb;
 				o.Alpha = 1;
 			}

@@ -46,12 +46,15 @@ public class TerrainGenerator : MonoBehaviour
         }
 
         int[] triangles = new int[vertices.Count];
+        Vector2[] uv = new Vector2[vertices.Count];
         for (int i = 0; i < vertices.Count; i++)
         {
             triangles[i] = i;
+            uv[i] = new Vector2(vertices[i].x, vertices[i].z);
         }
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles;
+        mesh.uv = uv;
         mesh.RecalculateNormals();
         return mesh;
     }
