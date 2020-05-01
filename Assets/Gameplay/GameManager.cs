@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public Slider healthBarSlider;
-    public Button sacrificeButton;
     public Transform minionHolder;
     public Transform enemyHolder;
     public Transform sacraficeTable;
@@ -39,7 +38,6 @@ public class GameManager : MonoBehaviour
         minionHolder.transform.parent = transform;
         enemyHolder = new GameObject("Enemies").transform;
         enemyHolder.transform.parent = transform;
-        sacrificeButton.onClick.AddListener(SacrificeMinion);
         maxPopulation = BASE_MAX_POP;
     }
 

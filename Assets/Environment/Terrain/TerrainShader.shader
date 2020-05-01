@@ -56,7 +56,7 @@
 					slope = invLerp(_SlopeMinValue, 1, slope);
 				}
 
-				float4 color = lerp(tex * _Color1, _Color2, slope);
+				float4 color = tex * lerp(_Color1, _Color2, slope);
 				o.Albedo = color.rgb;
 				o.Alpha = 1;
 			}
