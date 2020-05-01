@@ -68,6 +68,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   rotationSpeed: 5
+  explosionSounds:
+  - {fileID: 8300000, guid: fe5720aa8a5b3d04cbbeabf286c44fda, type: 3}
+  - {fileID: 8300000, guid: ccf00da0bbe451e46afe14f1e3642e64, type: 3}
+  explosionEffect: {fileID: 1000012909287652, guid: 27c2e3e84879940468e041af2ccb9e6b,
+    type: 3}
 --- !u!54 &644522335
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117,6 +122,7 @@ MonoBehaviour:
   sadMaterial: {fileID: 2100000, guid: 73beed38ffaa60c43b43a6e63b9dedfe, type: 2}
   angryMaterial: {fileID: 2100000, guid: 8608b19104d54374b873352e1a971815, type: 2}
   meshRenderer: {fileID: 2633293486527507703}
+  animator: {fileID: 1559750678666948617}
 --- !u!1001 &6033143992076521082
 PrefabInstance:
   m_ObjectHideFlags: 0

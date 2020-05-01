@@ -7,21 +7,23 @@ ModelImporter:
       74: -3100369314251171874
     second: Idle
   - first:
-      74: -9121621101649706817
-    second: Running
-  - first:
       74: -3143607352010309131
     second: Sprinting
   - first:
-      74: 5927169222397495657
-    second: Minon Armature|Action
+      74: -8854084143336880736
+    second: Fighting
   - first:
-      74: 250543463405860121
-    second: Minon Armature|Fighting
+      74: -9121621101649706817
+    second: Running
   - first:
-      74: 830065081172778844
-    second: Minon Armature|Idle
-  externalObjects: {}
+      74: 757470543235877274
+    second: Praising
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minon Material
+    second: {fileID: 2100000, guid: 5d6801fa2dda423428e16f701d9d6d00, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -79,35 +81,6 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Running
-      takeName: Running
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 60
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: Sprinting
       takeName: Sprinting
       internalID: 0
@@ -137,11 +110,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Minon Armature|Action
-      takeName: Minon Armature|Action
+      name: Fighting
+      takeName: Fighting
       internalID: 0
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -166,8 +139,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Minon Armature|Fighting
-      takeName: Minon Armature|Fighting
+      name: Running
+      takeName: Running
       internalID: 0
       firstFrame: 0
       lastFrame: 60
@@ -195,18 +168,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Minon Armature|Idle
-      takeName: Minon Armature|Idle
+      name: Praising
+      takeName: Praising
       internalID: 0
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

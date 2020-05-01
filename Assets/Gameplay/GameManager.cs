@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public Button sacrificeButton;
     public Transform minionHolder;
 
     [HideInInspector]
@@ -14,12 +13,14 @@ public class GameManager : MonoBehaviour
 
     public int MinionCount { get { return minions.Count; } }
 
+    private AudioSource audioSource;
+
     void Awake()
     {
         instance = this;
+        audioSource = GetComponent<AudioSource>();
         minionHolder = new GameObject("Minions").transform;
         minionHolder.transform.parent = transform;
-        sacrificeButton.onClick.AddListener(SacrificeMinion);
     }
 
     private void SacrificeMinion()
@@ -42,5 +43,11 @@ public class GameManager : MonoBehaviour
         {
             SacrificeMinion();
         }
+    }
+
+    public void PlayAudio(AudioClip clip, float volume, float pitchMin, float pitchMax)
+    {
+        audioSource.pitch = Random.Range(pitchMin, pitchMax);
+        audioSource.PlayOneShot(clip, volume);
     }
 }
