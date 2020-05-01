@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Terrain
+  - Minion
   layers:
   - Default
   - TransparentFX

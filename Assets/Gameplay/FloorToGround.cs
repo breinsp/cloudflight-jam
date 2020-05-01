@@ -6,6 +6,7 @@ public class FloorToGround : MonoBehaviour
 {
     public LayerMask layerMask;
     public bool onUpdate = false;
+    public float offset;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class FloorToGround : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
         {
             Vector3 pos = transform.position;
-            pos.y = hit.point.y;
+            pos.y = hit.point.y + offset;
             transform.position = pos;
         }
     }
