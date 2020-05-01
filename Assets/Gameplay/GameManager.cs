@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public List<Minion> minions;
     [HideInInspector]
-    public Transform minionHolder;
-
-    [HideInInspector]
     public List<Enemy> enemies;
 
     public int MinionCount { get { return minions.Count; } }

@@ -73,7 +73,7 @@ public class Minion : MonoBehaviour
             minionAnimation.SetState(MinionState.normal);
         }
 
-        direction = goal - transform.position;
+        Vector3 direction = goal - transform.position;
         direction.y = 0f;
         if (direction.magnitude < 0.1f)
         {

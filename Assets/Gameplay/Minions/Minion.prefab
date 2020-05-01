@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 644522335}
   - component: {fileID: 3358397447541925686}
   - component: {fileID: 5291912830074069100}
+  - component: {fileID: 3768814822747913476}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Minion
@@ -68,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   rotationSpeed: 5
+  attacker: {fileID: 0}
   explosionSounds:
   - {fileID: 8300000, guid: fe5720aa8a5b3d04cbbeabf286c44fda, type: 3}
   - {fileID: 8300000, guid: ccf00da0bbe451e46afe14f1e3642e64, type: 3}
@@ -123,6 +125,23 @@ MonoBehaviour:
   angryMaterial: {fileID: 2100000, guid: 8608b19104d54374b873352e1a971815, type: 2}
   meshRenderer: {fileID: 2633293486527507703}
   animator: {fileID: 1559750678666948617}
+--- !u!114 &3768814822747913476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250186615877511433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd70576405cf1342ae98733386658f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 6
+  health: 100
+  damagePerHit: 10
+  attackDeltaTime: 1
+  attackMode: 0
 --- !u!1001 &6033143992076521082
 PrefabInstance:
   m_ObjectHideFlags: 0
