@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 442796328}
   - component: {fileID: 442796329}
   - component: {fileID: 442796330}
+  - component: {fileID: 442796331}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -693,6 +694,7 @@ MonoBehaviour:
   minionHolder: {fileID: 0}
   enemyHolder: {fileID: 0}
   sacraficeTable: {fileID: 0}
+  enemySpawnerHolder: {fileID: 0}
   popCountText: {fileID: 983476997}
   health: 0
   minions: []
@@ -828,6 +830,21 @@ MonoBehaviour:
       type: 3}
     icon: {fileID: 0}
     cost: 0
+--- !u!114 &442796331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442796323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf8981fc32610849ac4ae2f554e48a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDeltaTime: 5
+  lastSpawnDeltaTime: 0
+  enemySpawnerHolder: {fileID: 0}
 --- !u!1 &472784987
 GameObject:
   m_ObjectHideFlags: 0
