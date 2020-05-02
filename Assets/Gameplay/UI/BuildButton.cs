@@ -14,8 +14,10 @@ public class BuildButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private RectTransform rect;
     private Vector2 pos;
 
-    public delegate void onClick();
-    public event onClick OnClick;
+    public delegate void VoidHandler();
+    public event VoidHandler OnClick;
+    public event VoidHandler OnHover;
+    public event VoidHandler OnLeave;
 
     private bool purchasable;
 
@@ -54,11 +56,13 @@ public class BuildButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         hovered = true;
         BuildUI.hoveringOnPanel = true;
+        OnHover.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         hovered = false;
         BuildUI.hoveringOnPanel = false;
+        OnLeave.Invoke();
     }
 }

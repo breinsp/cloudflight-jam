@@ -8,16 +8,20 @@ public class BuildSystem : MonoBehaviour
     public static BuildSystem instance;
 
     public List<BuildingEntity> buildings;
+    public AudioClip buildSound;
+    public Material invalidMaterial;
 
     private BuildingEntity selectedEntity;
     private Camera cam;
     private BuildingPreview previewInstance;
     private Transform buildingsHolder;
     private LayerMask layerMask;
+    private AudioSource audioSource;
 
     void Awake()
     {
         instance = this;
+        audioSource = gameObject.AddComponent<AudioSource>();
         buildingsHolder = new GameObject("buildings").transform;
         buildingsHolder.SetParent(transform);
         cam = Camera.main;
@@ -55,6 +59,7 @@ public class BuildSystem : MonoBehaviour
 
     void CompleteBuilding(Vector3 position)
     {
+        audioSource.PlayOneShot(buildSound);
         GameManager.instance.SacrificeMinions(selectedEntity.cost);
         SpawnBuilding(position, selectedEntity);
         Destroy(previewInstance.gameObject);
@@ -104,6 +109,7 @@ public class BuildSystem : MonoBehaviour
 public struct BuildingEntity
 {
     public string name;
+    public string description;
     public GameObject prefab;
     public Sprite icon;
     public int cost;

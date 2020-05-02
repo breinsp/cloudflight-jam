@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public Slider healthBarSlider;
+    public GameObject gameOverPanel;
+    [Space(20)]
     public Transform minionHolder;
     public Transform enemyHolder;
     public Transform sacraficeTable;
@@ -109,6 +111,6 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        throw new NotImplementedException();
+        gameOverPanel.SetActive(true);
     }
 }

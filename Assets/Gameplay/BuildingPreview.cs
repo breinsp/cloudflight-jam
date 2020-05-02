@@ -8,7 +8,6 @@ public class BuildingPreview : MonoBehaviour
 {
     public bool colliding;
 
-    private MeshRenderer meshRenderer;
     private Rigidbody rb;
 
     private List<Collider> collidingWith;
@@ -18,7 +17,6 @@ public class BuildingPreview : MonoBehaviour
     {
         building = GetComponent<Building>();
         collidingWith = new List<Collider>();
-        meshRenderer = GetComponent<MeshRenderer>();
         rb = gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;

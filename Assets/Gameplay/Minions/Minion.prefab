@@ -73,6 +73,8 @@ MonoBehaviour:
   explosionSounds:
   - {fileID: 8300000, guid: fe5720aa8a5b3d04cbbeabf286c44fda, type: 3}
   - {fileID: 8300000, guid: ccf00da0bbe451e46afe14f1e3642e64, type: 3}
+  - {fileID: 8300000, guid: d1d2fe26ae52c7341ba8dc3e54c0bab0, type: 3}
+  screamingSound: {fileID: 8300000, guid: e7fcdf7dd8557aa4f828e962978cbca7, type: 3}
   explosionEffect: {fileID: 1000012909287652, guid: 27c2e3e84879940468e041af2ccb9e6b,
     type: 3}
 --- !u!54 &644522335
@@ -142,6 +144,7 @@ MonoBehaviour:
   damagePerHit: 10
   attackDeltaTime: 1
   attackMode: 0
+  fighting: 0
 --- !u!1001 &6033143992076521082
 PrefabInstance:
   m_ObjectHideFlags: 0
