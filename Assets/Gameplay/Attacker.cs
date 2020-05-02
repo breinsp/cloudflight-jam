@@ -98,9 +98,13 @@ public class Attacker : MonoBehaviour
     {
         if (targetHolder != null)
         {
+            if (target != null && Vector3.Distance(transform.position, target.position) <= attackRange)
+            {
+                return true;
+            }
             foreach (Transform tr in targetHolder)
             {
-                if (tr.tag == targetTag)
+                if (tr.CompareTag(targetTag))
                 {
                     Vector3 distance = tr.position - transform.position;
                     if (distance.magnitude <= attackRange)
