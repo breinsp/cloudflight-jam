@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8686477707922040205}
   - component: {fileID: 2827235293277476746}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: Cave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41eb046ce825e8d4eb76be72390cf59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 2416868800154429730, guid: 8adcbd43e5bc61145b94479489f3e82a,
+  enemyPrefab: {fileID: 8176892672936649630, guid: 2dfb942aa7ab01f4d8add7dfee099ba4,
     type: 3}
-  spawnRadius: 3
+  spawnRadius: 5
 --- !u!114 &2827235293277476746
 MonoBehaviour:
   m_ObjectHideFlags: 0

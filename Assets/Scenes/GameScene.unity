@@ -649,8 +649,16 @@ MonoBehaviour:
       type: 3}
     icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     cost: 20
+  - name: Turret
+    description: shoots enemies in range
+    prefab: {fileID: 474030708289833886, guid: 46175f4cd09d43d4db39906db0c4858e, type: 3}
+    icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    cost: 1
   buildSound: {fileID: 8300000, guid: a55458571bbee9b44a8feed49f609381, type: 3}
   invalidMaterial: {fileID: 2100000, guid: e0e7d0ac27e3d7a4b828f6b3f28546f5, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &442796326
 MonoBehaviour:
   m_ObjectHideFlags: 0

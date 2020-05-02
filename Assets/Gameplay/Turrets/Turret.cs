@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Building
 {
     public float attackRange;
     public float rotationSpeed;
@@ -14,8 +14,7 @@ public class Turret : MonoBehaviour
     public string targetTag;
     public float health;
 
-    private float lastAttackDeltaTime;
-
+    public AudioClip fireSound;
     public GameObject shellPrefab;
     public Transform head;
     public Transform tubeEnd;
@@ -24,9 +23,15 @@ public class Turret : MonoBehaviour
     public Transform target;
     public Transform shellHolder;
 
+    private float lastAttackDeltaTime;
+    private AudioSource audioSource;
+    private bool placed;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
         shellHolder = new GameObject("shellHolder").transform;
         shellHolder.parent = transform;
         targetHolder = GameManager.instance.enemyHolder;
@@ -35,31 +40,31 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CheckIfEnemyInRange())
+        if (!placed) return;
+        if (CheckIfEnemyInRange())
         {
             Vector3 direction = target.position - head.position;
 
             float angle = Vector3.Angle(direction, head.forward);
-            if (angle <= 1f)
+            if (angle <= 2f)
             {
-                if(lastAttackDeltaTime >= attackDeltaTime)
+                if (lastAttackDeltaTime >= attackDeltaTime)
                 {
                     bool result = Physics.Raycast(tubeEnd.position, tubeEnd.up, out RaycastHit hit, attackRange);
                     //Debug.DrawRay(tubeEnd.position, tubeEnd.up.normalized * attackRange, Color.red);
                     if (!result || result && hit.collider.CompareTag(targetTag))
                     {
                         GunShoot();
-                        Debug.Log("shoot");
                         lastAttackDeltaTime = 0f;
                     }
                 }
             }
             Quaternion lookRotation = Quaternion.LookRotation(direction);
             head.transform.rotation = Quaternion.Lerp(head.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-            if(head.transform.eulerAngles.x >= 20f)
+            if (head.transform.eulerAngles.x >= 30f)
             {
                 Vector3 eulerAngle = head.transform.eulerAngles;
-                eulerAngle.x = 20;
+                eulerAngle.x = 30;
                 head.transform.eulerAngles = eulerAngle;
             }
         }
@@ -72,6 +77,7 @@ public class Turret : MonoBehaviour
         Shell shell = shellGameObject.GetComponent<Shell>();
         shell.Init(shellSpeed, shellDamage, targetTag);
         shellGameObject.transform.parent = shellHolder;
+        audioSource.PlayOneShot(fireSound, 0.4f);
     }
 
     public bool CheckIfEnemyInRange()
@@ -97,5 +103,10 @@ public class Turret : MonoBehaviour
             target = null;
         }
         return false;
+    }
+
+    public override void BuildingPlaced()
+    {
+        placed = true;
     }
 }

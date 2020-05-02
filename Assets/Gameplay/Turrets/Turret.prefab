@@ -111,7 +111,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 30
   rotationSpeed: 10
-  attackDeltaTime: 1
+  attackDeltaTime: 0.2
+  shellSpeed: 300
+  shellDamage: 20
+  targetTag: Enemy
+  health: 1000
+  fireSound: {fileID: 8300000, guid: ac8f0dc0a9134a04bbbfcba27b9d9959, type: 3}
   shellPrefab: {fileID: 274123592023179088, guid: 927a60b1d0c3abc4b8fc2474e12eddbc,
     type: 3}
   head: {fileID: 8094950241260046413}

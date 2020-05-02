@@ -18,7 +18,7 @@ public class Shell : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,10 +29,10 @@ public class Shell : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag == targetTag)
+        if (collision.collider.tag == targetTag)
         {
             Attacker attacker = collision.collider.GetComponent<Attacker>();
-            if(attacker != null)
+            if (attacker != null)
             {
                 attacker.health -= damage;
             }

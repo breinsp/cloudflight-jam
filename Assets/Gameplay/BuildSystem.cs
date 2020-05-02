@@ -10,12 +10,12 @@ public class BuildSystem : MonoBehaviour
     public List<BuildingEntity> buildings;
     public AudioClip buildSound;
     public Material invalidMaterial;
+    public LayerMask layerMask;
 
     private BuildingEntity selectedEntity;
     private Camera cam;
     private BuildingPreview previewInstance;
     private Transform buildingsHolder;
-    private LayerMask layerMask;
     private AudioSource audioSource;
 
     void Awake()
@@ -25,7 +25,6 @@ public class BuildSystem : MonoBehaviour
         buildingsHolder = new GameObject("buildings").transform;
         buildingsHolder.SetParent(transform);
         cam = Camera.main;
-        layerMask = LayerMask.GetMask("Terrain");
     }
 
     void Update()
@@ -33,7 +32,7 @@ public class BuildSystem : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         Ray buildRay = cam.ScreenPointToRay(mousePos);
 
-        bool hit = Physics.Raycast(buildRay, out RaycastHit hitInfo, layerMask);
+        bool hit = Physics.Raycast(buildRay, out RaycastHit hitInfo, 1000, layerMask);
         if (!hit)
         {
             Debug.LogWarning("not pointing at ground!");
@@ -55,6 +54,29 @@ public class BuildSystem : MonoBehaviour
         {
             CancelBuilding();
         }
+        GetKeyInput();
+    }
+
+    void GetKeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            Build(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            Build(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            Build(2);
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            Build(3);
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+            Build(4);
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+            Build(5);
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+            Build(6);
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+            Build(7);
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+            Build(8);
     }
 
     void CompleteBuilding(Vector3 position)
@@ -102,6 +124,11 @@ public class BuildSystem : MonoBehaviour
             previewInstance = instanceGameObject.AddComponent<BuildingPreview>();
             selectedEntity = building;
         }
+    }
+    internal void Build(int index)
+    {
+        if (index >= buildings.Count) return;
+        Build(buildings[index]);
     }
 }
 
