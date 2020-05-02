@@ -8,11 +8,14 @@ public class Enemy : MonoBehaviour
     public float moveSpeed;
     public float rotationSpeed;
     public Attacker attacker;
-    // Start is called before the first frame update
+    public Animator animator;
+
     void Awake()
     {
         attacker = GetComponent<Attacker>();
         attacker.Init(Attacker_Die, GameManager.instance.minionHolder, "Minion", moveSpeed, rotationSpeed);
+        attacker.OnBeginAttack += () => animator.Play("Fighting");
+        attacker.OnStopAttack += () => animator.Play("Walking");
     }
 
     private void Attacker_Die()
@@ -35,6 +38,7 @@ public class Enemy : MonoBehaviour
     {
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         transform.position += direction.normalized * moveSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+        transform.forward = direction.normalized;
+        //transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 }
