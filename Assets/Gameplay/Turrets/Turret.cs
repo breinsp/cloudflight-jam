@@ -79,7 +79,6 @@ public class Turret : Building
         shell.Init(shellSpeed, shellDamage, targetTag);
         shellGameObject.transform.parent = shellHolder;
         audioSource.PlayOneShot(fireSound, 0.4f);
-        ScreenShake.instance.SetShakeImpulse(1, 1);
     }
 
     public bool CheckIfEnemyInRange()

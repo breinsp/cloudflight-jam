@@ -7,7 +7,7 @@ public class EnemySpawnSystem : MonoBehaviour
 {
     public int maxEnemyCount;
     public float spawnDeltaTime;
-    private float lastSpawnDeltaTime;
+    private float lastSpawnDeltaTime = -60;
     private Transform enemyHolder;
     private Transform enemySpawnerHolder;
     private Transform buildingsHolder;
@@ -19,7 +19,6 @@ public class EnemySpawnSystem : MonoBehaviour
         buildingsHolder = BuildSystem.instance.buildingsHolder;
     }
 
-    // Update is called once per frame
     void Update()
     {
         RecalculateMaxEnemyCount();

@@ -655,12 +655,13 @@ MonoBehaviour:
     description: shoots enemies in range
     prefab: {fileID: 474030708289833886, guid: 46175f4cd09d43d4db39906db0c4858e, type: 3}
     icon: {fileID: 21300000, guid: 36a90979db1edb1458771de2d1cd4c07, type: 3}
-    cost: 1
+    cost: 30
   buildSound: {fileID: 8300000, guid: a55458571bbee9b44a8feed49f609381, type: 3}
   invalidMaterial: {fileID: 2100000, guid: e0e7d0ac27e3d7a4b828f6b3f28546f5, type: 2}
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
+  buildingsHolder: {fileID: 0}
 --- !u!114 &442796326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,6 +701,7 @@ MonoBehaviour:
   health: 0
   minions: []
   enemies: []
+  maxPopulation: 0
 --- !u!114 &442796328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,9 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8981fc32610849ac4ae2f554e48a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxEnemyCount: 0
   spawnDeltaTime: 5
-  lastSpawnDeltaTime: 0
-  enemySpawnerHolder: {fileID: 0}
 --- !u!1 &472784987
 GameObject:
   m_ObjectHideFlags: 0

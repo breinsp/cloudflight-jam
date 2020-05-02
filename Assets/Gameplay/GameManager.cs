@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     public int RemainingPop { get { return maxPopulation - MinionCount; } }
 
     public int maxPopulation;
-    private AudioSource audioSource;
 
     void Awake()
     {
@@ -98,12 +97,6 @@ public class GameManager : MonoBehaviour
         {
             SacrificeMinion();
         }
-    }
-
-    public void PlayAudio(AudioClip clip, float volume, float pitchMin, float pitchMax)
-    {
-        audioSource.pitch = UnityEngine.Random.Range(pitchMin, pitchMax);
-        audioSource.PlayOneShot(clip, volume);
     }
 
     public void IncreasePop(int increaseBy)
