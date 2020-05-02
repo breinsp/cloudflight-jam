@@ -101,6 +101,10 @@ public class BuildSystem : MonoBehaviour
         instance.transform.localRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 360f), 0);
         instance.transform.position = position;
         instance.name = entity.name;
+        if(instance.name == "Enemy Spawner")
+        {
+            instance.transform.parent = GameManager.instance.enemySpawnerHolder;
+        }
         instance.GetComponent<Building>().BuildingPlaced();
     }
 
