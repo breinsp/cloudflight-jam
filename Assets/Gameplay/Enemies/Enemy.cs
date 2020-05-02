@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public Attacker attacker;
     public Animator animator;
 
+    public GameObject explosionPrefab;
+
     void Awake()
     {
         attacker = GetComponent<Attacker>();
@@ -20,13 +22,15 @@ public class Enemy : MonoBehaviour
 
     private void Attacker_Die()
     {
+        var instance = Instantiate(explosionPrefab);
+        instance.transform.position = transform.position;
         Destroy(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!attacker.attackMode)
+        if (!attacker.attackMode && !attacker.attackingAltar)
         {
             Vector3 direction = -transform.position;
             direction.y = 0;

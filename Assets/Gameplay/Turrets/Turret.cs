@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Turret : Building
 {
     public float attackRange;
@@ -30,7 +31,7 @@ public class Turret : Building
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         audioSource.pitch = UnityEngine.Random.Range(0.9f, 1f);
         shellHolder = new GameObject("shellHolder").transform;
         shellHolder.parent = transform;

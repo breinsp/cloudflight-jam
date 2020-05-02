@@ -8,8 +8,8 @@ public class Minion : MonoBehaviour
     public float moveSpeed;
     public float rotationSpeed;
     public Attacker attacker;
-    public AudioClip[] explosionSounds;
     public GameObject explosionEffect;
+    public MinionAudio minionAudio;
 
     private Vector3 goal;
 
@@ -174,12 +174,13 @@ public class Minion : MonoBehaviour
 
     public void Explode()
     {
-        int index = UnityEngine.Random.Range(0, explosionSounds.Length);
-        GameManager.instance.PlayAudio(explosionSounds[index], 1f, 0.8f, 1.2f);
+        minionAudio.PlayExplosionSound();
         var instance = Instantiate(explosionEffect);
         instance.transform.position = transform.position;
-        Destroy(gameObject);
+        var destroyAfter = gameObject.AddComponent<DestroyAfter>();
+        destroyAfter.afterSeconds = 1f;
         ScreenShake.instance.SetShakeImpulse(10f, 1f);
+        minionAnimation.meshRenderer.enabled = false;
     }
 
     public void BeginAttack()
