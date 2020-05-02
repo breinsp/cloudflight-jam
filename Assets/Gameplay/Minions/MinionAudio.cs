@@ -18,7 +18,7 @@ public class MinionAudio : MonoBehaviour
     public void PlayFightSound()
     {
         audioSource.pitch = Random.Range(1.2f, 1.5f);
-        audioSource.PlayOneShot(fightSound, 0.3f);
+        audioSource.PlayOneShot(fightSound, 0.2f);
     }
 
     public void PlayExplosionSound()

@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ramSound: {fileID: 0}
+  stepSounds: []
 --- !u!82 &119770567016736349
 AudioSource:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -262,7 +263,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc3131514b9d5f458c2f6375c874ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ramSound: {fileID: 8300000, guid: ac8f0dc0a9134a04bbbfcba27b9d9959, type: 3}
+  ramSound: {fileID: 8300000, guid: c87a02603783c60458b98ce8e8a5cbcb, type: 3}
+  stepSounds:
+  - {fileID: 8300000, guid: 67eb535cbd4ead141ab19fbc16cf418f, type: 3}
+  - {fileID: 8300000, guid: 91df16dde9ff77947bcc31eb128cfe9f, type: 3}
+  - {fileID: 8300000, guid: de798121226ebe74f8cf328fba3ac20f, type: 3}
+  - {fileID: 8300000, guid: 92c4915ca3f45164ab1e0b650ab227d4, type: 3}
 --- !u!1001 &798405431578694091
 PrefabInstance:
   m_ObjectHideFlags: 0
