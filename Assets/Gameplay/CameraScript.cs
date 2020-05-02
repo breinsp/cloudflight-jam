@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    public float maxDistance;
     public float movementSpeed = 1;
     public float mouseSensitivity = 1;
     public float scrollSpeed = 1;
@@ -37,6 +38,10 @@ public class CameraScript : MonoBehaviour
         move = rotation * move;
 
         transform.position += move;
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, -maxDistance, maxDistance);
+        pos.z = Mathf.Clamp(pos.z, -maxDistance, maxDistance);
+        transform.position = pos;
     }
 
     private void GetMouseInput()
