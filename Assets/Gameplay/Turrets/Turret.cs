@@ -43,7 +43,7 @@ public class Turret : Building
         if (!placed) return;
         if (CheckIfEnemyInRange())
         {
-            Vector3 direction = target.position - head.position;
+            Vector3 direction = target.position + Vector3.up * 0.5f - head.position;
 
             float angle = Vector3.Angle(direction, head.forward);
             if (angle <= 2f)
