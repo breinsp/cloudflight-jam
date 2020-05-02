@@ -1,5 +1,101 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!82 &6779090572372349274
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349723867600099187}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &1559750678666948617
 Animator:
   serializedVersion: 3
@@ -19,6 +115,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &95693956286367805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2349723867600099187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff99434092155c4ab47fa9fb3887d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fightSound: {fileID: 8300000, guid: 6d83a09dbfaa705429721d1c80b0fc2e, type: 3}
+  explosionSounds:
+  - {fileID: 8300000, guid: fe5720aa8a5b3d04cbbeabf286c44fda, type: 3}
+  - {fileID: 8300000, guid: ccf00da0bbe451e46afe14f1e3642e64, type: 3}
+  - {fileID: 8300000, guid: d1d2fe26ae52c7341ba8dc3e54c0bab0, type: 3}
 --- !u!1 &7250186615877511433
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,13 +183,9 @@ MonoBehaviour:
   moveSpeed: 4
   rotationSpeed: 5
   attacker: {fileID: 0}
-  explosionSounds:
-  - {fileID: 8300000, guid: fe5720aa8a5b3d04cbbeabf286c44fda, type: 3}
-  - {fileID: 8300000, guid: ccf00da0bbe451e46afe14f1e3642e64, type: 3}
-  - {fileID: 8300000, guid: d1d2fe26ae52c7341ba8dc3e54c0bab0, type: 3}
-  screamingSound: {fileID: 8300000, guid: e7fcdf7dd8557aa4f828e962978cbca7, type: 3}
   explosionEffect: {fileID: 1000012909287652, guid: 27c2e3e84879940468e041af2ccb9e6b,
     type: 3}
+  minionAudio: {fileID: 95693956286367805}
 --- !u!54 &644522335
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109,7 +218,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   onUpdate: 1
+  updateNormal: 0
   offset: 0
+  lerpSpeed: 1
 --- !u!114 &5291912830074069100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,10 +250,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd70576405cf1342ae98733386658f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 6
+  attackRange: 20
   health: 100
   damagePerHit: 10
   attackDeltaTime: 1
+  attackingAltar: 0
   attackMode: 0
   fighting: 0
 --- !u!1001 &6033143992076521082

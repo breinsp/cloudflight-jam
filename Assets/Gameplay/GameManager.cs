@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         health = MAX_HEALTH;
-        audioSource = GetComponent<AudioSource>();
         minionHolder = new GameObject("Minions").transform;
         minionHolder.transform.parent = transform;
         enemyHolder = new GameObject("Enemies").transform;

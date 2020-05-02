@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4179829302910372934}
   - component: {fileID: 1703985896160167003}
   - component: {fileID: 4893310660177923379}
+  - component: {fileID: 2447422111719967768}
   m_Layer: 0
   m_Name: EnemyBot
   m_TagString: Enemy
@@ -48,10 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b26dd814e4aac40998eb954a8b0797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
   rotationSpeed: 5
   attacker: {fileID: 0}
   animator: {fileID: 5760470347800784883}
+  explosionPrefab: {fileID: 1000011797152326, guid: 2ec5ae01efa530147a63358460ce3fd8,
+    type: 3}
 --- !u!65 &726435095616906253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77,10 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd70576405cf1342ae98733386658f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 8
+  attackRange: 10
   health: 200
   damagePerHit: 20
   attackDeltaTime: 1
+  attackingAltar: 0
   attackMode: 0
   fighting: 0
 --- !u!54 &1703985896160167003
@@ -118,6 +122,115 @@ MonoBehaviour:
   updateNormal: 1
   offset: 0
   lerpSpeed: 1
+--- !u!114 &2447422111719967768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176892672936649630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc3131514b9d5f458c2f6375c874ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ramSound: {fileID: 0}
+--- !u!82 &119770567016736349
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661948845152979138}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &5760470347800784883
 Animator:
   serializedVersion: 3
@@ -137,6 +250,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6693386221316332799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661948845152979138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc3131514b9d5f458c2f6375c874ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ramSound: {fileID: 8300000, guid: ac8f0dc0a9134a04bbbfcba27b9d9959, type: 3}
 --- !u!1001 &798405431578694091
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -600,7 +600,6 @@ GameObject:
   - component: {fileID: 442796327}
   - component: {fileID: 442796325}
   - component: {fileID: 442796328}
-  - component: {fileID: 442796329}
   - component: {fileID: 442796330}
   - component: {fileID: 442796331}
   m_Layer: 0
@@ -642,25 +641,24 @@ MonoBehaviour:
     description: spawns minions
     prefab: {fileID: 8424847154689692998, guid: 741dec1965909c54b8369ba82ac92b1e,
       type: 3}
-    icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    icon: {fileID: 21300000, guid: 975a07762e9e4e14e9c1bccd7cdd6202, type: 3}
     cost: 10
   - name: Barracks
     description: increases max population by 20
     prefab: {fileID: 8424847154689692998, guid: 83f5cc23981bc8743b33b90c9f8b2e30,
       type: 3}
-    icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    icon: {fileID: 21300000, guid: 4978018d7e2e88943aa66f9b01c415d9, type: 3}
     cost: 20
   - name: Turret
     description: shoots enemies in range
     prefab: {fileID: 474030708289833886, guid: 46175f4cd09d43d4db39906db0c4858e, type: 3}
-    icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    icon: {fileID: 21300000, guid: 36a90979db1edb1458771de2d1cd4c07, type: 3}
     cost: 1
   buildSound: {fileID: 8300000, guid: a55458571bbee9b44a8feed49f609381, type: 3}
   invalidMaterial: {fileID: 2100000, guid: e0e7d0ac27e3d7a4b828f6b3f28546f5, type: 2}
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  buildingsHolder: {fileID: 0}
 --- !u!114 &442796326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,7 +698,6 @@ MonoBehaviour:
   health: 0
   minions: []
   enemies: []
-  maxPopulation: 0
 --- !u!114 &442796328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,102 +714,6 @@ MonoBehaviour:
     type: 3}
   buildPanel: {fileID: 749372971}
   buildingDescription: {fileID: 1648264088}
---- !u!82 &442796329
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 442796323}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &442796330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,7 +745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf8981fc32610849ac4ae2f554e48a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemyCount: 0
+  spawnDeltaTime: 5
+  lastSpawnDeltaTime: 0
+  enemySpawnerHolder: {fileID: 0}
 --- !u!1 &472784987
 GameObject:
   m_ObjectHideFlags: 0

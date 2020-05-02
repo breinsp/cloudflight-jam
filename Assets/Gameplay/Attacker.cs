@@ -2,10 +2,21 @@
 
 public class Attacker : MonoBehaviour
 {
+    private const float altarRange = 3f;
+
     public float attackRange;
     public float health;
     public float damagePerHit;
     public float attackDeltaTime;
+
+    public bool attackingAltar;
+    public bool attackMode;
+    public bool fighting;
+
+    public delegate void VoidHandler();
+    public event VoidHandler OnDeath;
+    public event VoidHandler OnBeginAttack;
+    public event VoidHandler OnStopAttack;
 
     private float movingSpeed;
     private float rotationSpeed;
@@ -14,14 +25,6 @@ public class Attacker : MonoBehaviour
     private Transform target;
     private Transform targetHolder;
     private string targetTag;
-
-    public bool attackMode = false;
-    public bool fighting = false;
-
-    public delegate void VoidHandler();
-    public event VoidHandler OnDeath;
-    public event VoidHandler OnBeginAttack;
-    public event VoidHandler OnStopAttack;
 
     public void Init(VoidHandler die, Transform targetHolder, string targetTag, float movingSpeed, float rotationSpeed)
     {
@@ -41,7 +44,14 @@ public class Attacker : MonoBehaviour
             return;
         }
         attackMode = CheckIfEnemyInRange();
-        if (attackMode)
+        if (attackingAltar)
+        {
+            if (lastAttackDeltaTime >= attackDeltaTime)
+            {
+                Attack();
+            }
+        }
+        else if (attackMode)
         {
             MoveToTarget();
         }
@@ -82,8 +92,15 @@ public class Attacker : MonoBehaviour
             if (OnBeginAttack != null)
                 OnBeginAttack.Invoke();
         }
-        Attacker attacker = target.GetComponent<Attacker>();
-        attacker.health -= damagePerHit;
+        if (attackingAltar)
+        {
+            GameManager.instance.health -= Mathf.RoundToInt(damagePerHit);
+        }
+        else
+        {
+            Attacker attacker = target.GetComponent<Attacker>();
+            attacker.health -= damagePerHit;
+        }
         lastAttackDeltaTime = 0;
     }
 
@@ -98,6 +115,12 @@ public class Attacker : MonoBehaviour
     {
         if (targetHolder != null)
         {
+            if (transform.position.magnitude <= altarRange && transform.CompareTag("Enemy"))
+            {
+                //altar in range
+                attackingAltar = true;
+                return false;
+            }
             if (target != null && Vector3.Distance(transform.position, target.position) <= attackRange)
             {
                 return true;

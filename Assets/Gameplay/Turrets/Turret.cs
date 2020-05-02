@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Turret : Building
 {
     public float attackRange;
@@ -30,8 +31,8 @@ public class Turret : Building
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = UnityEngine.Random.Range(0.9f, 1f);
         shellHolder = new GameObject("shellHolder").transform;
         shellHolder.parent = transform;
         targetHolder = GameManager.instance.enemyHolder;
@@ -78,6 +79,7 @@ public class Turret : Building
         shell.Init(shellSpeed, shellDamage, targetTag);
         shellGameObject.transform.parent = shellHolder;
         audioSource.PlayOneShot(fireSound, 0.4f);
+        ScreenShake.instance.SetShakeImpulse(1, 1);
     }
 
     public bool CheckIfEnemyInRange()
