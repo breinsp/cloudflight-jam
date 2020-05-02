@@ -9,9 +9,11 @@ public class Minion : MonoBehaviour
     public float rotationSpeed;
     public Attacker attacker;
     public AudioClip[] explosionSounds;
+    public AudioClip screamingSound;
     public GameObject explosionEffect;
 
     private Vector3 goal;
+    private AudioSource audioSource;
 
     private bool isSacrificed;
     private bool isPraising;
@@ -21,6 +23,7 @@ public class Minion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         minionAnimation = GetComponent<MinionAnimation>();
         minionAnimation.SetState(MinionState.normal);
         attacker = GetComponent<Attacker>();
@@ -33,7 +36,7 @@ public class Minion : MonoBehaviour
     private void Attacker_Die()
     {
         GameManager.instance.RemoveMinion(this);
-        StartExplosion(0.5f);
+        StartExplosion(0.5f, false);
     }
 
     // Update is called once per frame
@@ -93,7 +96,7 @@ public class Minion : MonoBehaviour
         Vector3 direction = goal - transform.position;
         if (direction.magnitude < 3f)
         {
-            StartExplosion(2);
+            StartExplosion(2, true);
         }
         else
         {
@@ -140,10 +143,16 @@ public class Minion : MonoBehaviour
         moveSpeed *= 2;
     }
 
-    public void StartExplosion(float duration)
+    public void StartExplosion(float duration, bool scream)
     {
         if (isPraising) return;
         isPraising = true;
+        if (scream)
+        {
+            audioSource.pitch = UnityEngine.Random.Range(1.3f, 1.5f);
+            audioSource.volume = 0.4f;
+            audioSource.PlayOneShot(screamingSound);
+        }
         minionAnimation.SetState(MinionState.praising);
         StartCoroutine(HandleExplosion(duration));
     }
