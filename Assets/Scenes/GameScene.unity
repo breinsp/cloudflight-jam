@@ -321,7 +321,9 @@ MonoBehaviour:
     Scroll Wheel - camera elevation
 
     MMB - rotate
-    camera'
+    camera
+
+    1,2,3... - build respective building'
 --- !u!222 &177794942
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -784,7 +786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -126.5}
+  m_AnchoredPosition: {x: 0, y: -99.64}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &472784989
@@ -934,7 +936,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <Stupid gameover text>
+  m_Text: '<b>Game Over</b>
+
+
+    Your altar has been destroyed!'
 --- !u!222 &617930166
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1748,7 +1753,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 300}
+  m_SizeDelta: {x: 400, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1095796349
 MonoBehaviour:
@@ -1897,8 +1902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -20}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: -60, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1190038513
 MonoBehaviour:
@@ -1931,10 +1936,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '<Cheesy welcome text>
+  m_Text: 'Welcome to <b>Blood Sacrifice</b>
 
 
-    <Crappy gameplay guide>'
+    Your goal is to protect the altar
+    from incoming mean killer robots. Minions will defend your altar and can be sacrificed
+    to expand your base.
+
+
+    Use them wisely!'
 --- !u!222 &1190038514
 CanvasRenderer:
   m_ObjectHideFlags: 0
