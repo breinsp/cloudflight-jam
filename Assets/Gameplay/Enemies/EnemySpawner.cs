@@ -17,17 +17,17 @@ public class EnemySpawner : Building
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            RaycastHit hit;
-            if (!Physics.SphereCast(transform.position, 2f, Vector3.up, out hit, 2f))
-            {
-                SpawnEnemy();
-            }
+            SpawnEnemy();
         }
     }
 
     public void SpawnEnemy()
     {
-        Vector3 newPos = new Vector3(transform.position.x, transform.position.y + 1.5f,transform.position.z);
+        Vector2 rand = Random.insideUnitCircle;
+        float distance = transform.position.magnitude;
+        Vector3 newPos = transform.position + new Vector3(rand.x, 0, rand.y) * spawnRadius;
+        newPos = newPos.normalized * distance;
+
         GameObject enemy = Instantiate(enemyPrefab, newPos, Quaternion.identity);
         enemy.transform.parent = GameManager.instance.enemyHolder;
         GameManager.instance.AddEnemy(enemy.GetComponent<Enemy>());
