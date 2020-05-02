@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public int EnemyCount { get { return enemies.Count; } }
     public int RemainingPop { get { return maxPopulation - MinionCount; } }
 
-    private int maxPopulation;
+    public int maxPopulation;
     private AudioSource audioSource;
 
     void Awake()

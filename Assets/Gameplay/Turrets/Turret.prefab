@@ -140,7 +140,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   onUpdate: 0
+  updateNormal: 0
   offset: 1.5
+  lerpSpeed: 1
 --- !u!1 &940658754097849537
 GameObject:
   m_ObjectHideFlags: 0
