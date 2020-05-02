@@ -15,8 +15,9 @@ public class BuildSystem : MonoBehaviour
     private BuildingEntity selectedEntity;
     private Camera cam;
     private BuildingPreview previewInstance;
-    private Transform buildingsHolder;
+    public Transform buildingsHolder;
     private AudioSource audioSource;
+
 
     void Awake()
     {
