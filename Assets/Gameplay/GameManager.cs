@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Transform minionHolder;
     public Transform enemyHolder;
     public Transform sacraficeTable;
+    public Transform enemySpawnerHolder;
     public Text popCountText;
     public int health;
 
@@ -40,6 +41,8 @@ public class GameManager : MonoBehaviour
         minionHolder.transform.parent = transform;
         enemyHolder = new GameObject("Enemies").transform;
         enemyHolder.transform.parent = transform;
+        enemySpawnerHolder = new GameObject("EnemySpawnerHolder").transform;
+        enemySpawnerHolder.transform.parent = transform;
         maxPopulation = BASE_MAX_POP;
     }
 
