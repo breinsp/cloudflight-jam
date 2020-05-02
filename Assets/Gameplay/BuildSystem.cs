@@ -104,6 +104,7 @@ public class BuildSystem : MonoBehaviour
 public struct BuildingEntity
 {
     public string name;
+    public string description;
     public GameObject prefab;
     public Sprite icon;
     public int cost;
